@@ -1,2 +1,2 @@
-NuPackExercise
+NuPack Exercise
 ==============
