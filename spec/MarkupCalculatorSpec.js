@@ -30,6 +30,14 @@ describe("MarkupCalculator", function() {
     });
     
     
+    it("Gets the markup percentage based on category", function() {
+         expect(markupCalculator.getCategoryMarkup("food")).toEqual(13);
+         expect(markupCalculator.getCategoryMarkup("drugs")).toEqual(7.5);
+         expect(markupCalculator.getCategoryMarkup("electronics")).toEqual(2);
+         expect(markupCalculator.getCategoryMarkup("books")).toEqual(0);
+    });
+    
+    
     it("Calculates the correct output for each fake data", function() {
         for(i in fakeData){
             baseprice = fakeData[i].baseprice;
