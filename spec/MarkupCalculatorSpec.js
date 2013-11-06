@@ -10,8 +10,17 @@ describe("MarkupCalculator", function() {
         expect(true).toEqual(true);
     });
   
-    it("Produces the correct output for each fake data", function() {
+    it("Calculates the flat markup", function() {
+        for(i in fakeData){
+            baseprice = fakeData[i].baseprice;
+            flatMarkup = baseprice + (baseprice * 5/100);
+            expect(markupCalculator.calculateFlatMarkup(baseprice)).toEqual(flatMarkup);
+        }
+    });
     
+    
+    
+    it("Calculates the correct output for each fake data", function() {
         for(i in fakeData){
             baseprice = fakeData[i].baseprice;
             people = fakeData[i].people;
