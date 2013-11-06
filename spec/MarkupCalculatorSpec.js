@@ -10,6 +10,8 @@ describe("MarkupCalculator", function() {
         expect(true).toEqual(true);
     });
   
+ 
+    
     it("Calculates the flat markup", function() {
         for(i in fakeData){
             baseprice = fakeData[i].baseprice;
@@ -18,6 +20,15 @@ describe("MarkupCalculator", function() {
         }
     });
     
+    it("Calculates per person markup", function() {
+        for(i in fakeData){
+            baseprice = fakeData[i].baseprice;
+            people = fakeData[i].people;
+            flatMarkup =  markupCalculator.calculateFlatMarkup(baseprice);
+            perPersonMarkup =  (flatMarkup + baseprice) * 1.2 * people/100;
+            expect(markupCalculator.calculatePerPersonMarkup(people)).toEqual(perPersonMarkup);
+        }
+    });
     
     
     it("Calculates the correct output for each fake data", function() {
