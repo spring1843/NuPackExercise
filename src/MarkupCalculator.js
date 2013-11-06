@@ -32,7 +32,7 @@ MarkupCalculator.prototype.getCategoryMarkup = function(category) {
 };
 
 MarkupCalculator.prototype.calculateCategoryMarkup = function(baseLineAndFlatMarkup, categoryMarkupPercentage) {
-    
+    return  baseLineAndFlatMarkup * categoryMarkupPercentage/100;
 };
 
 
