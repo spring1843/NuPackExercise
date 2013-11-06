@@ -13,7 +13,7 @@ describe("MarkupCalculator", function() {
     it("Calculates the flat markup", function() {
         for(i in fakeData){
             baseprice = fakeData[i].baseprice;
-            flatMarkup = baseprice + (baseprice * 5/100);
+            flatMarkup =  baseprice * 5/100;
             expect(markupCalculator.calculateFlatMarkup(baseprice)).toEqual(flatMarkup);
         }
     });
