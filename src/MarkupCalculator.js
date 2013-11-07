@@ -7,7 +7,6 @@ function MarkupCalculator() {
     this.percentageFood = 13;
     this.percentageElectronics = 2;
     
-    
     // Keywords related to each category
     this.keywordsPharmaceuticals = ["drugs", "medicine"];
     this.keywordsFood = ["food", "pizza"];
@@ -35,13 +34,13 @@ function MarkupCalculator() {
     };
     
     this.calculate = function(baseprice, people, category) {
-        // Without Exception, there is a flat markup on all jobs of 5%
+        // Without Exception, there is a flat markup on all jobs
         var flatMarkup = this.calculateFlatMarkup(baseprice);
         
         //The flat markup is calculated first and then all other markups are calculated on top of the base price plus flat markup.
         var baseLineAndFlatMarkup = (flatMarkup + baseprice);
         
-        // For each person that needs to work on the job, there is a markup of 1.2%
+        // For each person that needs to work on the job, there is a markup
         var perPersonMarkup = baseLineAndFlatMarkup * this.getPerPersonMarkup(people);
         
         // Markups are also added depending on the types of materials involved
