@@ -7,7 +7,7 @@ describe("MarkupCalculator", function() {
     });
 
     it("There is sanity", function() {
-        expect(true).toEqual(true);
+        expect(true).toBeTruthy;
     });
     
     it("There is test data", function() {
@@ -15,55 +15,31 @@ describe("MarkupCalculator", function() {
     });
   
     it("Can calculate the flat markup", function() {
-        for(i in testData){
-            var baseprice = testData[i].baseprice;
-            var flatMarkup =  baseprice * 5/100;
-            expect(markupCalculator.calculateFlatMarkup(baseprice)).toEqual(flatMarkup);
-        }
+        expect(markupCalculator.calculateFlatMarkup(100)).toEqual(markupCalculator.percentageFlat);
     });
     
     it("Can calculate per person markup", function() {
-        for(i in testData){
-            var  baseprice = testData[i].baseprice;
-            var  people = testData[i].people;
-            var  flatMarkup =  markupCalculator.calculateFlatMarkup(baseprice);
-            var  baseLineAndFlatMarkup = (flatMarkup + baseprice);
-            var  perPersonMarkup =  baseLineAndFlatMarkup * 1.2 * people/100;
-            expect(markupCalculator.calculatePerPersonMarkup(baseLineAndFlatMarkup, people)).toEqual(perPersonMarkup);
-        }
+        expect(markupCalculator.getPerPersonMarkup(1)).toEqual(0.012);
+        expect(markupCalculator.getPerPersonMarkup(2)).toBeCloseTo(0.012 * 2);
+        expect(markupCalculator.getPerPersonMarkup(3)).toBeCloseTo(0.012 * 3);
     });
-    
     
     it("Can get the markup percentage based on category", function() {
-        expect(markupCalculator.getCategoryMarkup("food")).toEqual(13);
-        expect(markupCalculator.getCategoryMarkup("drugs")).toEqual(7.5);
-        expect(markupCalculator.getCategoryMarkup("electronics")).toEqual(2);
+        expect(markupCalculator.getCategoryMarkup("food")).toEqual(0.13);
+        expect(markupCalculator.getCategoryMarkup("drugs")).toEqual(0.075);
+        expect(markupCalculator.getCategoryMarkup("electronics")).toEqual(0.02);
         expect(markupCalculator.getCategoryMarkup("books")).toEqual(0);
     });
-    
-    
-    it("Can calculate markup for category", function() {
-        for(i in testData){
-            var baseprice = testData[i].baseprice;
-            var category = testData[i].category;
-            var flatMarkup =  markupCalculator.calculateFlatMarkup(baseprice);
-            var baseLineAndFlatMarkup = (flatMarkup + baseprice);
-            var categoryMarkupPercentage = markupCalculator.getCategoryMarkup(category);
-            var markupForCategory =  baseLineAndFlatMarkup * categoryMarkupPercentage/100;
-            expect(markupCalculator.calculateCategoryMarkup(baseLineAndFlatMarkup, categoryMarkupPercentage)).toEqual(markupForCategory);
-        }
-    });
-    
+
     
     it("Can calculate the correct output for each sample data", function() {
         for(i in testData){
             var baseprice = testData[i].baseprice;
             var people = testData[i].people;
             var category = testData[i].category;
-            var output = testData[i].output;
-            expect(markupCalculator.calculate(baseprice, people, category)).toEqual(output);
+            var markup = testData[i].markup;
+            expect(markupCalculator.calculate(baseprice, people, category)).toEqual(markup);
         }
-    
     });
 
 });
