@@ -9,6 +9,10 @@ describe("MarkupCalculator", function() {
     it("There is sanity", function() {
         expect(true).toEqual(true);
     });
+    
+    it("There is test data", function() {
+        expect(testData).toBeDefined();
+    });
   
     it("Can calculate the flat markup", function() {
         for(i in testData){
