@@ -45,7 +45,6 @@ describe("MarkupCalculator", function() {
             flatMarkup =  markupCalculator.calculateFlatMarkup(baseprice);
             baseLineAndFlatMarkup = (flatMarkup + baseprice);
             categoryMarkupPercentage = markupCalculator.getCategoryMarkup(category);
-
             markupForCategory =  baseLineAndFlatMarkup * categoryMarkupPercentage/100;
             expect(markupCalculator.calculateCategoryMarkup(baseLineAndFlatMarkup, categoryMarkupPercentage)).toEqual(markupForCategory);
         }

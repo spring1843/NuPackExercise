@@ -10,33 +10,37 @@ MarkupCalculator.prototype.calculatePerPersonMarkup = function(baseLineAndFlatMa
 };
 
 MarkupCalculator.prototype.getCategoryMarkup = function(category) {
-   keywordsPharmaceuticals = ["drugs", "medicine"];
-   keywordsFood = ["food", "pizza"];
-   keywordsElectronics = ["ipads", "electronics"];
+    keywordsPharmaceuticals = ["drugs", "medicine"];
+    keywordsFood = ["food", "pizza"];
+    keywordsElectronics = ["ipads", "electronics"];
    
-   output = 0;
+    var output = 0;
    
-   if(output == 0 && keywordsPharmaceuticals.indexOf(category) > -1){
-       output = 7.5;
-   }
+    if(output == 0 && keywordsPharmaceuticals.indexOf(category) > -1){
+        output = 7.5;
+    }
    
-   if(output == 0 && keywordsFood.indexOf(category) > -1){
-       output = 13;
-   }
+    if(output == 0 && keywordsFood.indexOf(category) > -1){
+        output = 13;
+    }
    
-   if(output == 0 && keywordsElectronics.indexOf(category) > -1){
-       output = 2;
-   }
+    if(output == 0 && keywordsElectronics.indexOf(category) > -1){
+        output = 2;
+    }
    
-   return output; 
+    return output; 
 };
 
 MarkupCalculator.prototype.calculateCategoryMarkup = function(baseLineAndFlatMarkup, categoryMarkupPercentage) {
     return  baseLineAndFlatMarkup * categoryMarkupPercentage/100;
 };
 
-
-
 MarkupCalculator.prototype.calculate = function(baseprice, people, category) {
-    
+    flatMarkup = this.calculateFlatMarkup(baseprice);
+    baseLineAndFlatMarkup = (flatMarkup + baseprice);
+    perPersonMarkup = this.calculatePerPersonMarkup(baseLineAndFlatMarkup, people);
+    categoryMarkupPercentage = this.getCategoryMarkup(category);
+    markupForCategory = this.calculateCategoryMarkup(baseLineAndFlatMarkup, categoryMarkupPercentage)
+    calculatedMarkup = parseFloat((baseLineAndFlatMarkup + perPersonMarkup + markupForCategory).toFixed(2));
+    return calculatedMarkup;
 };
