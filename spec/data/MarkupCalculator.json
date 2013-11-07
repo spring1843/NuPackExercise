@@ -1,4 +1,4 @@
-fakeData = [
+testData = [
     {
         "baseprice": 1299.99,
         "people": 3,
